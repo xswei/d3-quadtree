@@ -7,7 +7,7 @@
 
 ## Installing
 
-`NPM` 安装： `npm install d3-quadtree`. 此外还可以下载 [latest release](https://github.com/d3/d3-quadtree/releases/latest). 可以直接从 [d3js.org](https://d3js.org) 以 standalone library](https://d3js.org/d3-quadtree.v1.min.js) 或作为 [D3 4.0](https://github.com/d3/d3) 的一部分载入。支持 `AMD`, `CommonJS` 以及基本的标签引入形式. 如果使用标签引入会暴露 `d3` 全局变量:
+`NPM` 安装： `npm install d3-quadtree`. 此外还可以下载 [latest release](https://github.com/d3/d3-quadtree/releases/latest). 可以直接从 [d3js.org](https://d3js.org) 以 [standalone library(单独标准库)](https://d3js.org/d3-quadtree.v1.min.js) 或作为 [D3 4.0](https://github.com/d3/d3) 的一部分载入。支持 `AMD`, `CommonJS` 以及基本的标签引入形式. 如果使用标签引入会暴露 `d3` 全局变量:
 
 ```html
 <script src="https://d3js.org/d3-quadtree.v1.min.js"></script>
