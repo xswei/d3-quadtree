@@ -1,6 +1,6 @@
 # d3-quadtree
 
-[quadtree](https://en.wikipedia.org/wiki/Quadtree) 将二维平面递归的划分为正方形，并且可以进一步将正方形划分为四个等大小的正方形。每一个独特的点都放置在一个独特的叶 [node](#nodes) 中；重合的点由链表表示。四叉树可以加速各种空间操作，比如用来计算电荷力模型的 [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation) 算法, 碰撞检测以及搜索最近点。
+[quadtree](https://en.wikipedia.org/wiki/Quadtree) 将二维平面递归的划分为正方形，并且可以进一步将正方形划分为四个等大小的正方形。每一个单独的点都放置在一个单独的 [node](#nodes) 中；重合的点由链表表示。四叉树可以加速各种空间操作，比如用来计算电荷力模型的 [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation) 算法, 碰撞检测以及搜索邻近点。
 
 <a href="http://bl.ocks.org/mbostock/9078690"><img src="http://bl.ocks.org/mbostock/raw/9078690/thumbnail.png" width="202"></a>
 <a href="http://bl.ocks.org/mbostock/4343214"><img src="http://bl.ocks.org/mbostock/raw/4343214/thumbnail.png" width="202"></a>
