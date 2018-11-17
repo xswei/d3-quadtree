@@ -84,7 +84,7 @@ function y(d) {
 <a name="quadtree_addAll" href="#quadtree_addAll">#</a> <i>quadtree</i>.<b>addAll</b>(<i>data</i>)
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/add.js#L50 "Source")
 
-Adds the specified array of *data* to the quadtree, deriving each element’s coordinates ⟨*x*,*y*⟩ using the current [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors, and return this quadtree. This is approximately equivalent to calling [*quadtree*.add](#quadtree_add) repeatedly:
+将指定点数组 *data* 添加到四叉树中，并使用当前 [*x*-](#quadtree_x) 和 [*y*-](#quadtree_y) 访问器为每个元素计算  ⟨*x*,*y*⟩  坐标，返回四叉树。这是一种重复使用 [*quadtree*.add](#quadtree_add) 添加多个点的快捷方式：
 
 ```js
 for (var i = 0, n = data.length; i < n; ++i) {
@@ -92,36 +92,36 @@ for (var i = 0, n = data.length; i < n; ++i) {
 }
 ```
 
-However, this method results in a more compact quadtree because the extent of the *data* is computed first before adding the data.
+但是，这种方法会产生更紧凑的四叉树，因为数据的区间是在添加数据之前计算的。
 
 <a name="quadtree_remove" href="#quadtree_remove">#</a> <i>quadtree</i>.<b>remove</b>(<i>datum</i>)
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js "Source")
 
-Removes the specified *datum* to the quadtree, deriving its coordinates ⟨*x*,*y*⟩ using the current [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors, and returns the quadtree. If the specified *datum* does not exist in this quadtree, this method does nothing.
+移除四叉树中指定的数据 *datum*，使用 [*x*-](#quadtree_x) 和 [*y*-](#quadtree_y) 访问器计算数据的坐标 ⟨*x*,*y*⟩。如果指定的 *datum* 不在当前四叉树中则什么都不做。
 
 <a name="quadtree_removeAll" href="#quadtree_removeAll">#</a> <i>quadtree</i>.<b>removeAll</b>(<i>data</i>)
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js#L59 "Source")
 
-…
+… 清空四叉树
 
 <a name="quadtree_copy" href="#quadtree_copy">#</a> <i>quadtree</i>.<b>copy</b>()
 
-Returns a copy of the quadtree. All [nodes](#nodes) in the returned quadtree are identical copies of the corresponding node in the quadtree; however, any data in the quadtree is shared by reference and not copied.
+返回四叉树的拷贝。返回的四叉树中所有的 [nodes](#nodes) 都会拷贝当前四叉树中所有的节点。但是四叉树中的数据是引用共享的，而不是拷贝的。
 
 <a name="quadtree_root" href="#quadtree_root">#</a> <i>quadtree</i>.<b>root</b>()
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/root.js "Source")
 
-Returns the root [node](#nodes) of the quadtree.
+返回当前四叉树的根 [node](#nodes)
 
 <a name="quadtree_data" href="#quadtree_data">#</a> <i>quadtree</i>.<b>data</b>()
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/data.js "Source")
 
-Returns an array of all data in the quadtree.
+返回当前四叉树中所有的数据数组。
 
 <a name="quadtree_size" href="#quadtree_size">#</a> <i>quadtree</i>.<b>size</b>()
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/size.js "Source")
 
-Returns the total number of data in the quadtree.
+返回当前四叉树中所有的数据个数。
 
 <a name="quadtree_find" href="#quadtree_find">#</a> <i>quadtree</i>.<b>find</b>(<i>x</i>, <i>y</i>[, <i>radius</i>])
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/find.js "Source")
