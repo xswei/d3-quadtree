@@ -18,21 +18,21 @@ var quadtree = d3.quadtree();
 </script>
 ```
 
-[Try d3-quadtree in your browser.](https://tonicdev.com/npm/d3-quadtree)
+[在浏览器中测试 d3-quadtree](https://tonicdev.com/npm/d3-quadtree)
 
 ## API Reference
 
 <a name="quadtree" href="#quadtree">#</a> d3.<b>quadtree</b>([<i>data</i>[, <i>x</i>, <i>y</i>]])
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/quadtree.js#L14 "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/quadtree.js#L14 "Source")
 
-Creates a new, empty quadtree with an empty [extent](#quadtree_extent) and the default [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors. If *data* is specified, [adds](#quadtree_addAll) the specified array of data to the quadtree. This is equivalent to:
+使用空的 [extent](#quadtree_extent) 和默认的 [*x*-](#quadtree_x) 和 [*y*-](#quadtree_y) 访问器创建一个新的、空的四叉树。如果指定了 *data* 则将指定的数组 [adds](#quadtree_addAll) 到四叉树中。等价于:
 
 ```js
 var tree = d3.quadtree()
     .addAll(data);
 ```
 
-If *x* and *y* are also specified, sets the [*x*-](#quadtree_x) and [*y*-](#quadtree_y) accessors to the specified functions before adding the specified array of data to the quadtree, equivalent to:
+如果同时指定了 *x* 和 *y* 则会在将数据添加到四叉树之前设置 [*x*-](#quadtree_x) 和 [*y*-](#quadtree_y) 访问器为指定的函数, 等价于:
 
 ```js
 var tree = d3.quadtree()
@@ -41,9 +41,9 @@ var tree = d3.quadtree()
     .addAll(data);
 ```
 
-<a name="quadtree_x" href="#quadtree_x">#</a> <i>quadtree</i>.<b>x</b>([<i>x</i>]) [<>](https://github.com/d3/d3-quadtree/blob/master/src/x.js "Source")
+<a name="quadtree_x" href="#quadtree_x">#</a> <i>quadtree</i>.<b>x</b>([<i>x</i>]) [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/x.js "Source")
 
-If *x* is specified, sets the current *x*-coordinate accessor and returns the quadtree. If *x* is not specified, returns the current *x*-accessor, which defaults to:
+如果指定了 *x* 则将当前 *x*-坐标的访问器设置为指定的值并返回当前四叉树。如果没有指定则返回当前 *x* 访问器，默认为:
 
 ```js
 function x(d) {
@@ -51,12 +51,12 @@ function x(d) {
 }
 ```
 
-The *x*-acccessor is used to derive the *x*-coordinate of data when [adding](#quadtree_add) to and [removing](#quadtree_remove) from the tree. It is also used when [finding](#quadtree_find) to re-access the coordinates of data previously added to the tree; therefore, the *x*- and *y*-accessors must be consistent, returning the same value given the same input.
+*x* 访问器用来在将数据 [adding](#quadtree_add) 到四叉树或者从四叉树中 [removing](#quadtree_remove) 时读取 *x* 坐标的值。在 [finding](#quadtree_find) 插入到树中的坐标时也会使用到。因此 *x* 和 *y* 访问器必须在相同的条件下返回确定的值。
 
 <a name="quadtree_y" href="#quadtree_y">#</a> <i>quadtree</i>.<b>y</b>([<i>y</i>])
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/y.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/y.js "Source")
 
-If *y* is specified, sets the current *y*-coordinate accessor and returns the quadtree. If *y* is not specified, returns the current *y*-accessor, which defaults to:
+如果指定了 *y* 则将当前 *y*-坐标的访问器设置为指定的值并返回当前四叉树。如果没有指定则返回当前 *y* 访问器，默认为:
 
 ```js
 function y(d) {
@@ -64,25 +64,25 @@ function y(d) {
 }
 ```
 
-The *y*-acccessor is used to derive the *y*-coordinate of data when [adding](#quadtree_add) to and [removing](#quadtree_remove) from the tree. It is also used when [finding](#quadtree_find) to re-access the coordinates of data previously added to the tree; therefore, the *x*- and *y*-accessors must be consistent, returning the same value given the same input.
+*y* 访问器用来在将数据 [adding](#quadtree_add) 到四叉树或者从四叉树中 [removing](#quadtree_remove) 时读取 *y* 坐标的值。在 [finding](#quadtree_find) 插入到树中的坐标时也会使用到。因此 *x* 和 *y* 访问器必须在相同的条件下返回确定的值。
 
 <a name="quadtree_extent" href="#quadtree_extent">#</a> <i>quadtree</i>.<b>extent</b>([*extent*])
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/extent.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/extent.js "Source")
 
-If *extent* is specified, expands the quadtree to [cover](#quadtree_cover) the specified points [[*x0*, *y0*], [*x1*, *y1*]] and returns the quadtree. If *extent* is not specified, returns the quadtree’s current extent [[*x0*, *y0*], [*x1*, *y1*]], where *x0* and *y0* are the inclusive lower bounds and *x1* and *y1* are the inclusive upper bounds, or undefined if the quadtree has no extent. The extent may also be expanded by calling [*quadtree*.cover](#quadtree_cover) or [*quadtree*.add](#quadtree_add).
+如果指定了 *extent* 则扩展四叉树的范围以 [cover(覆盖)](#quadtree_cover) 指定的点 [[*x0*, *y0*], [*x1*, *y1*]] 并返回四叉树。如果没有指定 *extent* 则返回当前的区间 [[*x0*, *y0*], [*x1*, *y1*]]，其中 *x0* 和 *y0* 表示区间的下界而 *x1* 和 *y1* 表示区间的上界，如果之前没有指定区间则会返回 `undefined`。扩展四叉树的区间必须使用 [*quadtree*.cover](#quadtree_cover) 或 [*quadtree*.add](#quadtree_add) 方法。
 
 <a name="quadtree_cover" href="#quadtree_cover">#</a> <i>quadtree</i>.<b>cover</b>(<i>x</i>, <i>y</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/cover.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/cover.js "Source")
 
-Expands the quadtree to cover the specified point ⟨*x*,*y*⟩, and returns the quadtree. If the quadtree’s extent already covers the specified point, this method does nothing. If the quadtree has an extent, the extent is repeatedly doubled to cover the specified point, wrapping the [root](#quadtree_root) [node](#nodes) as necessary; if the quadtree is empty, the extent is initialized to the extent [[⌊*x*⌋, ⌊*y*⌋], [⌈*x*⌉, ⌈*y*⌉]]. (Rounding is necessary such that if the extent is later doubled, the boundaries of existing quadrants do not change due to floating point error.)
+扩展四叉树的区间使其覆盖指定的点 ⟨*x*,*y*⟩ 并返回四叉树。如果四叉树的区间已经覆盖了指定的点则什么都不做。如果当前四叉树的区间没有覆盖指定的点则会重复加倍以覆盖指定的点。如果四叉树为空，则区间会被初始化为 [[⌊*x*⌋, ⌊*y*⌋], [⌈*x*⌉, ⌈*y*⌉]]。（四舍五入是必要的，这样的话如果区间在之后扩展翻倍时，不会因为浮点数而出现误差）。
 
 <a name="quadtree_add" href="#quadtree_add">#</a> <i>quadtree</i>.<b>add</b>(<i>datum</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/add.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/add.js "Source")
 
-Adds the specified *datum* to the quadtree, deriving its coordinates ⟨*x*,*y*⟩ using the current [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors, and returns the quadtree. If the new point is outside the current [extent](#quadtree_extent) of the quadtree, the quadtree is automatically expanded to [cover](#quadtree_cover) the new point.
+将指定的数据 *datum* 添加到四叉树中，并使用当前 [*x*-](#quadtree_x) 和 [*y*-](#quadtree_y) 访问器计算出坐标 ⟨*x*,*y*⟩，返回四叉树。如果新的点在当前 [extent](#quadtree_extent) 之外，则会自动调用 [cover](#quadtree_cover) 方法以覆盖新添加的点。
 
 <a name="quadtree_addAll" href="#quadtree_addAll">#</a> <i>quadtree</i>.<b>addAll</b>(<i>data</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/add.js#L50 "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/add.js#L50 "Source")
 
 Adds the specified array of *data* to the quadtree, deriving each element’s coordinates ⟨*x*,*y*⟩ using the current [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors, and return this quadtree. This is approximately equivalent to calling [*quadtree*.add](#quadtree_add) repeatedly:
 
@@ -95,12 +95,12 @@ for (var i = 0, n = data.length; i < n; ++i) {
 However, this method results in a more compact quadtree because the extent of the *data* is computed first before adding the data.
 
 <a name="quadtree_remove" href="#quadtree_remove">#</a> <i>quadtree</i>.<b>remove</b>(<i>datum</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js "Source")
 
 Removes the specified *datum* to the quadtree, deriving its coordinates ⟨*x*,*y*⟩ using the current [*x*-](#quadtree_x) and [*y*-](#quadtree_y)accessors, and returns the quadtree. If the specified *datum* does not exist in this quadtree, this method does nothing.
 
 <a name="quadtree_removeAll" href="#quadtree_removeAll">#</a> <i>quadtree</i>.<b>removeAll</b>(<i>data</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js#L59 "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/remove.js#L59 "Source")
 
 …
 
@@ -109,34 +109,34 @@ Removes the specified *datum* to the quadtree, deriving its coordinates ⟨*x*,*
 Returns a copy of the quadtree. All [nodes](#nodes) in the returned quadtree are identical copies of the corresponding node in the quadtree; however, any data in the quadtree is shared by reference and not copied.
 
 <a name="quadtree_root" href="#quadtree_root">#</a> <i>quadtree</i>.<b>root</b>()
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/root.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/root.js "Source")
 
 Returns the root [node](#nodes) of the quadtree.
 
 <a name="quadtree_data" href="#quadtree_data">#</a> <i>quadtree</i>.<b>data</b>()
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/data.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/data.js "Source")
 
 Returns an array of all data in the quadtree.
 
 <a name="quadtree_size" href="#quadtree_size">#</a> <i>quadtree</i>.<b>size</b>()
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/size.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/size.js "Source")
 
 Returns the total number of data in the quadtree.
 
 <a name="quadtree_find" href="#quadtree_find">#</a> <i>quadtree</i>.<b>find</b>(<i>x</i>, <i>y</i>[, <i>radius</i>])
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/find.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/find.js "Source")
 
 Returns the datum closest to the position ⟨*x*,*y*⟩ with the given search *radius*. If *radius* is not specified, it defaults to infinity. If there is no datum within the search area, returns undefined.
 
 <a name="quadtree_visit" href="#quadtree_visit">#</a> <i>quadtree</i>.<b>visit</b>(<i>callback</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/visit.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/visit.js "Source")
 
 Visits each [node](#nodes) in the quadtree in pre-order traversal, invoking the specified *callback* with arguments *node*, *x0*, *y0*, *x1*, *y1* for each node, where *node* is the node being visited, ⟨*x0*, *y0*⟩ are the lower bounds of the node, and ⟨*x1*, *y1*⟩ are the upper bounds, and returns the quadtree. (Assuming that positive *x* is right and positive *y* is down, as is typically the case in Canvas and SVG, ⟨*x0*, *y0*⟩ is the top-left corner and ⟨*x1*, *y1*⟩ is the lower-right corner; however, the coordinate system is arbitrary, so more formally *x0* <= *x1* and *y0* <= *y1*.)
 
 If the *callback* returns true for a given node, then the children of that node are not visited; otherwise, all child nodes are visited. This can be used to quickly visit only parts of the tree, for example when using the [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation). Note, however, that child quadrants are always visited in sibling order: top-left, top-right, bottom-left, bottom-right. In cases such as [search](#quadtree_find), visiting siblings in a specific order may be faster.
 
 <a name="quadtree_visitAfter" href="#quadtree_visitAfter">#</a> <i>quadtree</i>.<b>visitAfter</b>(<i>callback</i>)
- [<>](https://github.com/d3/d3-quadtree/blob/master/src/visitAfter.js "Source")
+ [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/visitAfter.js "Source")
 
 Visits each [node](#nodes) in the quadtree in post-order traversal, invoking the specified *callback* with arguments *node*, *x0*, *y0*, *x1*, *y1* for each node, where *node* is the node being visited, ⟨*x0*, *y0*⟩ are the lower bounds of the node, and ⟨*x1*, *y1*⟩ are the upper bounds, and returns the quadtree. (Assuming that positive *x* is right and positive *y* is down, as is typically the case in Canvas and SVG, ⟨*x0*, *y0*⟩ is the top-left corner and ⟨*x1*, *y1*⟩ is the lower-right corner; however, the coordinate system is arbitrary, so more formally *x0* <= *x1* and *y0* <= *y1*.) Returns *root*.
 
