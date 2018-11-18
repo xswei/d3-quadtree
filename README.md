@@ -126,40 +126,41 @@ for (var i = 0, n = data.length; i < n; ++i) {
 <a name="quadtree_find" href="#quadtree_find">#</a> <i>quadtree</i>.<b>find</b>(<i>x</i>, <i>y</i>[, <i>radius</i>])
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/find.js "Source")
 
-Returns the datum closest to the position ⟨*x*,*y*⟩ with the given search *radius*. If *radius* is not specified, it defaults to infinity. If there is no datum within the search area, returns undefined.
+返回距离指定点 ⟨*x*,*y*⟩ 最近的数据，可以指定搜索半径  *radius*. 如果没有指定 *radius* 则默认为无穷大。如果在指定的搜索区域内没有找到数据则返回 `undefined`.
 
 <a name="quadtree_visit" href="#quadtree_visit">#</a> <i>quadtree</i>.<b>visit</b>(<i>callback</i>)
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/visit.js "Source")
 
-Visits each [node](#nodes) in the quadtree in pre-order traversal, invoking the specified *callback* with arguments *node*, *x0*, *y0*, *x1*, *y1* for each node, where *node* is the node being visited, ⟨*x0*, *y0*⟩ are the lower bounds of the node, and ⟨*x1*, *y1*⟩ are the upper bounds, and returns the quadtree. (Assuming that positive *x* is right and positive *y* is down, as is typically the case in Canvas and SVG, ⟨*x0*, *y0*⟩ is the top-left corner and ⟨*x1*, *y1*⟩ is the lower-right corner; however, the coordinate system is arbitrary, so more formally *x0* <= *x1* and *y0* <= *y1*.)
+以前序遍历的方式遍历所有的 [node](#nodes)，并传入参数 *node*, *x0*, *y0*, *x1*, *y1* 调用指定的 *callback*，其中 *node* 为当前被遍历到的节点，⟨*x0*, *y0*⟩ 是当前节点的下界而 ⟨*x1*, *y1*⟩ 是当前节点的上界，返回四叉树。（假设 *x* 正方向为右，*y* 正方向为下，在 `Canvas` 和 `SVG` 中 ⟨*x0*, *y0*⟩ 为左上角坐标，⟨*x1*, *y1*⟩ 为右下角坐标，但是坐标系统也可以是其他形式，所以更一般的情况应该为 *x0* <= *x1* 并且 *y0* <= *y1*）
 
-If the *callback* returns true for a given node, then the children of that node are not visited; otherwise, all child nodes are visited. This can be used to quickly visit only parts of the tree, for example when using the [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation). Note, however, that child quadrants are always visited in sibling order: top-left, top-right, bottom-left, bottom-right. In cases such as [search](#quadtree_find), visiting siblings in a specific order may be faster.
+如果 *callback* 返回真值，则当前节点的子节点将不会被遍历，否则当前节点的子节点都会被遍历到。这在遍历四叉树中的部分分区时很有用，例如 [Barnes–Hut approximation](https://en.wikipedia.org/wiki/Barnes–Hut_simulation)。请注意，子象限总是按照兄弟节点的顺序遍历: 左上角、右上角、左下角、右下角。在 [search](#quadtree_find) 等情形下，按照指定的顺序遍历兄弟节点可能会更快。
 
 <a name="quadtree_visitAfter" href="#quadtree_visitAfter">#</a> <i>quadtree</i>.<b>visitAfter</b>(<i>callback</i>)
  [<源码>](https://github.com/d3/d3-quadtree/blob/master/src/visitAfter.js "Source")
 
-Visits each [node](#nodes) in the quadtree in post-order traversal, invoking the specified *callback* with arguments *node*, *x0*, *y0*, *x1*, *y1* for each node, where *node* is the node being visited, ⟨*x0*, *y0*⟩ are the lower bounds of the node, and ⟨*x1*, *y1*⟩ are the upper bounds, and returns the quadtree. (Assuming that positive *x* is right and positive *y* is down, as is typically the case in Canvas and SVG, ⟨*x0*, *y0*⟩ is the top-left corner and ⟨*x1*, *y1*⟩ is the lower-right corner; however, the coordinate system is arbitrary, so more formally *x0* <= *x1* and *y0* <= *y1*.) Returns *root*.
+以后序遍历的方式遍历所有的 [node](#nodes)，并传入参数 *node*, *x0*, *y0*, *x1*, *y1* 调用指定的 *callback*，其中 *node* 为当前被遍历到的节点，⟨*x0*, *y0*⟩ 是当前节点的下界而 ⟨*x1*, *y1*⟩ 是当前节点的上界，返回四叉树。（假设 *x* 正方向为右，*y* 正方向为下，在 `Canvas` 和 `SVG` 中 ⟨*x0*, *y0*⟩ 为左上角坐标，⟨*x1*, *y1*⟩ 为右下角坐标，但是坐标系统也可以是其他形式，所以更一般的情况应该为 *x0* <= *x1* 并且 *y0* <= *y1*）
 
 ### Nodes
 
-Internal nodes of the quadtree are represented as four-element arrays in left-to-right, top-to-bottom order:
+四叉树的内部节点以从左到右、从上到下的顺序表示为四个元素数组:
 
-* `0` - the top-left quadrant, if any.
-* `1` - the top-right quadrant, if any.
-* `2` - the bottom-left quadrant, if any.
-* `3` - the bottom-right quadrant, if any.
+* `0` - 左上象限，如果有.
+* `1` - 右上象限，如果有.
+* `2` - 左下象限，如果有.
+* `3` - 右下象限，如果有.
 
-A child quadrant may be undefined if it is empty.
+如果子象限是空的，则它可能是未定义的。
 
-Leaf nodes are represented as objects with the following properties:
+叶节点表示为具有以下属性的对象:
 
-* `data` - the data associated with this point, as passed to [*quadtree*.add](#quadtree_add).
-* `next` - the next datum in this leaf, if any.
+* `data` - 与当前点关联的数据，也就是传递给 [*quadtree*.add](#quadtree_add) 的数据
+* `next` - 当前叶节点的下一个数据，如果有的话.
 
-The `length` property may be used to distinguish leaf nodes from internal nodes: it is undefined for leaf nodes, and 4 for internal nodes. For example, to iterate over all data in a leaf node:
+`length` 属性可以用来区分叶节点和内部节点：如果是叶节点则为 `undefined`，如果是 `4` 则为内部节点。例如获取所有的叶节点的数据：
 
 ```js
 if (!node.length) do console.log(node.data); while (node = node.next);
 ```
 
-The point’s *x*- and *y*-coordinates **must not be modified** while the point is in the quadtree. To update a point’s position, [remove](#quadtree_remove) the point and then re-[add](#quadtree_add) it to the quadtree at the new position. Alternatively, you may discard the existing quadtree entirely and create a new one from scratch; this may be more efficient if many of the points have moved.
+四叉树中的点的 *x*- 和 *y*-坐标 **必须不能修改**。更新一个点的位置需要首先 [remove](#quadtree_remove) 点然后使用新的位置重新 [add](#quadtree_add) 到四叉树中。或者，可以完全丢弃现有的四叉树，重新创建一个新的四叉树，如果大多数点的位置改变，则重新创建可能会更高效。
+
